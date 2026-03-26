@@ -1,0 +1,17 @@
+export const RISK_DRIVER_POOL = [
+  "Low ground elevation",
+  "Poor drainage capacity",
+  "Repeated local flood history",
+  "High impervious surface runoff",
+  "Proximity to river/canal",
+  "Coastal storm surge exposure",
+  "High soil moisture saturation",
+  "Upstream dam overflow risk",
+  "Inadequate flood barriers",
+  "Recent land subsidence detected",
+  "High water table level",
+  "Deforestation in catchment area",
+  "Blocked drainage infrastructure",
+  "Low slope gradient",
+  "Urban heat island runoff effect",
+];
