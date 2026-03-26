@@ -1,73 +1,124 @@
-# React + TypeScript + Vite
+# FloodPulse PRO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FloodPulse PRO is a frontend prototype for a flood risk assessment dashboard aimed at insurance analysts and underwriters. It visualizes property-level flood exposure across Thai regions, combines map-based exploration with portfolio summaries, and presents generated ML-style risk outputs in a compact operational UI.
 
-Currently, two official plugins are available:
+The project uses fully generated client-side data. There is no backend service or real ML pipeline in this repository.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What the project does
 
-## React Compiler
+- Displays flood-risk properties on an interactive Leaflet map
+- Lets users switch between supported Thai regions
+- Provides KPI summaries and regional stats for the selected portfolio
+- Supports property filtering, browsing, and detail inspection in a sidebar
+- Shows flood depth, damage, explainability, and sensor-style status data
+- Includes a chatbot-style panel for guided interactions
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Main features
 
-## Expanding the ESLint configuration
+- Interactive property markers with risk-based visual encoding
+- Region-level navigation for Bangkok, Songkhla, Ayutthaya, Chiang Mai, Nakhon Ratchasima, and Samut Prakan
+- Deterministic fake data generation so the same region produces stable results
+- Portfolio and property detail views designed for analyst workflows
+- Built-in charts and summary components for fast inspection
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Tech stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- React 19
+- TypeScript
+- Vite
+- Zustand for app state
+- Leaflet and React Leaflet for mapping
+- Recharts for data visualization
+- Lucide React for icons
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- Node.js 20 or newer recommended
+- npm
+
+### Install dependencies
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Start the development server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Vite will start a local development server and print the local URL in the terminal, typically `http://localhost:5173`.
+
+### Build for production
+
+```bash
+npm run build
+```
+
+The production build output is generated in the `dist/` folder.
+
+### Preview the production build
+
+```bash
+npm run preview
+```
+
+### Run linting
+
+```bash
+npm run lint
+```
+
+## Available scripts
+
+- `npm run dev` starts the Vite development server
+- `npm run build` runs TypeScript project build checks and creates a production bundle
+- `npm run preview` serves the built app locally for validation
+- `npm run lint` runs ESLint across the codebase
+
+## Project structure
+
+```text
+src/
+  components/
+    ChatBot/
+    Map/
+    Sidebar/
+    ui/
+  data/
+  hooks/
+  styles/
+  types/
+  utils/
+```
+
+- `src/components` contains the dashboard UI, map, sidebar, and reusable UI primitives
+- `src/data` contains region definitions, archetypes, risk drivers, and generated mock data inputs
+- `src/hooks` contains app state and filtering logic
+- `src/types` defines the shared TypeScript models
+- `src/utils` contains formatting, seeded random generation, and risk color helpers
+
+## Data model notes
+
+This repository is built around a generated property risk schema that includes:
+
+- Flood hazard scores and risk bands
+- Flood depth estimates across return periods
+- Damage and loss estimates by archetype
+- Explainability metadata such as top risk drivers and confidence
+- Derived insurance-facing values such as premium and payout estimates
+
+The dashboard is intended as a realistic UI prototype, not a source of real flood predictions.
+
+## Development notes
+
+- Map tiles come from OpenStreetMap
+- Property and region data are generated locally in the browser
+- The app is currently frontend-only and does not require environment variables to run
+
+## Repository
+
+GitHub repository: https://github.com/tatsankan/flood_dashboard
